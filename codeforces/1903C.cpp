@@ -9,21 +9,25 @@ int main () {
         int n; cin>>n;
         vector<int> v(n);
         for(int i=0;i<n;i++) cin>>v[i];
-       	int k = 1; long long s = v[0];
-       	long long ans = 0;
-       	for(int i=1;i<n;i++) {
-       		if(v[i] > 0) {
-       			cout<<" adding sum "<<s<<" with k "<<k<<endl;
-       			ans += s*k;
-       			k++;
-       			s = v[i];	
-       		}
-       		else
-       			s += v[i];
-    	}
 
-       	cout<<" adding sum "<<s<<" with k "<<k<<endl;
-    	ans += s * 1LL * k;
+        ll s = 0, ans = 0;
+        int k = 0;
+        for(int i = 0; i < n; i++) {
+            if(v[i] > 0) {
+                cout<<"adding s = "<<s<<" with k = "<<k<<endl;
+                ans += s * 1LL * k;
+                k++;
+                s = 0;
+                cout<<"adding s = "<<v[i]<<" with k = "<<k<<endl;
+                ans += v[i] * 1LL * k;
+                k++;
+            }
+            else {
+                s += v[i];
+            }
+        }
+        cout<<"adding s = "<<s<<" with k = "<<k<<endl;
+        ans += s * 1LL * k;
     	cout<<ans<<endl;
 	}
 }
